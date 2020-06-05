@@ -1,0 +1,5 @@
+@extends('template_backend.home')
+@section('head_title', 'Tags')
+@section('title_content', 'Tags')
+@section('content')
+@endsection()
