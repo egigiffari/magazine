@@ -21,6 +21,7 @@
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
+  @yield('js')
   
   <!-- Template JS File -->
   <script src="/assets/js/scripts.js"></script>
