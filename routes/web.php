@@ -26,4 +26,9 @@ Route::resource('/category', 'CategoryController');
 
 Route::resource('/tags', 'TagController');
 
+// @Post Route
+Route::get('/posts/trash', 'PostController@trash_posts')->name('posts.trash');
+Route::get('/posts/restore/{id}', 'PostController@restore_posts')->name('posts.restore');
+Route::delete('/posts/kill/{id}', 'PostController@permanent_delete')->name('posts.kill');
 Route::resource('/posts', 'PostController');
+// @End Post Route

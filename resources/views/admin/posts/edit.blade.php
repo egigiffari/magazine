@@ -15,12 +15,13 @@
 
     @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
-            {!! Session('success') !n!}
+            {!! Session('success') !!}
         </div>
     @endif
 
     <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
         @csrf
+        @method('patch')
         <div class="form-group">
             <label for="posts">Judul</label>
             <input type="text" name="judul" id="posts" class="form-control" value="{{ $post->judul }}">
@@ -54,7 +55,7 @@
             <input type="file" name="image" id="image" class="form-control">
         </div>
         <div class="form-group">
-            <button class="btn btn-primary">Save Posts</button>
+            <button class="btn btn-primary">Update Posts</button> 
         </div>
     </form>
 

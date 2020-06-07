@@ -100,7 +100,36 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required|min:3',
+            'category_id' => 'required',
+            'content' => 'required'
+        ]);
+        
+        $post_old = post::findorfail($id);
+        $post = post::findorfail($id);
+
+        $post_data = [
+            'judul' => $request->judul,
+            'slug' => Str::slug($request->judul),
+            'category_id' => $request->category_id,
+            'content' => $request->content
+            // 'gambar' => 'public/uploads/posts/' . $new_gambar
+        ];
+
+        if ($request->has('image')) {
+            $gambar = $request->image;
+            $new_gambar = time().$gambar->getClientOriginalName();
+            $gambar->move('public/uploads/posts/', $new_gambar);
+            $post_data['gambar'] = 'public/uploads/posts/' . $new_gambar;
+        }
+
+        // dd($post_data);
+        
+        $post->tags()->sync($request->tags);
+        $post->update($post_data);
+        
+        return redirect()->back()->with('success', "Post : <strong>$post_old->judul</strong> Modify To <strong>$request->judul</strong>");
     }
 
     /**
@@ -111,6 +140,31 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = post::findorfail($id);
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('success', "Post : <strong>$post->judul</strong> Moved To Trash");
+    }
+
+    public function trash_posts()
+    {
+        $posts = post::onlyTrashed()->paginate(10);
+        return view('admin.posts.trash', compact('posts'));
+    }
+
+    public function restore_posts($id)
+    {
+        $post = post::withTrashed()->where('id', $id)->first();
+        $post->restore();
+
+        return redirect()->back()->with('success', "Post : <strong>$post->judul</strong> Has Been Restore");
+    }
+
+    public function permanent_delete($id)
+    {
+        $post = post::withTrashed()->where('id', $id)->first();
+        $post->forceDelete();
+
+        return redirect()->back()->with('success', "Post : <strong>$post->judul</strong> Has Been Permanent Delete");
     }
 }
