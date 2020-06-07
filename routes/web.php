@@ -11,24 +11,33 @@
 |
 */
 
-// use Illuminate\Routing\Route;            
+// use Illuminate\Routing\Route;
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function (){
-    return view('home');
+Route::group(['middleware' => 'auth'], function(){
+    
+    // @Category Route
+    Route::resource('/category', 'CategoryController');
+    // @End Category Route
+    
+    // @Tags Route
+    Route::resource('/tags', 'TagController');
+    // @End Tags Route
+    
+    // @Post Route
+    Route::get('/posts/trash', 'PostController@trash_posts')->name('posts.trash');
+    Route::get('/posts/restore/{id}', 'PostController@restore_posts')->name('posts.restore');
+    Route::delete('/posts/kill/{id}', 'PostController@permanent_delete')->name('posts.kill');
+    Route::resource('/posts', 'PostController');
+    // @End Post Route
+    
 });
+ 
 
-
-Route::resource('/category', 'CategoryController');
-
-Route::resource('/tags', 'TagController');
-
-// @Post Route
-Route::get('/posts/trash', 'PostController@trash_posts')->name('posts.trash');
-Route::get('/posts/restore/{id}', 'PostController@restore_posts')->name('posts.restore');
-Route::delete('/posts/kill/{id}', 'PostController@permanent_delete')->name('posts.kill');
-Route::resource('/posts', 'PostController');
-// @End Post Route

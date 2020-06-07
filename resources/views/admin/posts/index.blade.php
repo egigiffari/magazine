@@ -18,6 +18,7 @@
             <th>Post</th>
             <th>Category</th>
             <th>Tags</th>
+            <th>Creator</th>
             <th>Image</th>
             <th>Action</th>
         </thead>
@@ -31,10 +32,11 @@
                 <td>
                     <ul style="list-style:none;">
                         @foreach($hasil->tags  as $tag)
-                        <li><span class="badge badge-info">{{ $tag->name }}</span></li>
+                        <li><h6><span class="badge badge-info badge-sm">{{ $tag->name }}</span></h6></li>
                         @endforeach
                     </ul>
                 </td>
+                <td><span class="btn btn-warning btn-sm">{{ $hasil->user->name }}</span></td>
                 <td><img src="{{ asset($hasil->gambar) }}" class="img-fluid" style="width:100px;"></td>
                 <td>
                     <form action="{{ route('posts.destroy', $hasil->id) }}" method="post">

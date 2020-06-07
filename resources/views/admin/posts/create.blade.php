@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="category">Category</label>
-            <select name="category_id" id="category" class="form-control">
+            <select name="category_id" id="category" class="form-control selectric">
                 <option value="">Please Select One</option>
                 @foreach($category as $result)
                     <option value="{{$result->id}}">{{$result->name}}</option>
@@ -43,7 +43,7 @@
             </select>
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+            <textarea name="content" id="content" class="form-control summernote" cols="30" rows="50"></textarea>
         </div>
         <div class="form-group">
             <label for="image">Thumbnail</label>
@@ -58,8 +58,12 @@
 
 @section('css')
     <link href="/assets/modules/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/modules/jquery-selectric/selectric.css">
+    <link rel="stylesheet" href="/assets/modules/summernote/summernote-bs4.css">
 @endsection
 
 @section('js')
     <script src="/assets/modules/select2/dist/js/select2.full.min.js"></script>
+    <script src="/assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
+    <script src="/assets/modules/summernote/summernote-bs4.js"></script>
 @endsection
