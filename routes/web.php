@@ -17,9 +17,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'BlogController@index');
+Route::get('/post', function(){
+    return view('template_frontend.post');
 });
+
 
 Route::group(['middleware' => 'auth'], function(){
     
@@ -37,6 +39,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/posts/kill/{id}', 'PostController@permanent_delete')->name('posts.kill');
     Route::resource('/posts', 'PostController');
     // @End Post Route
+
+    // @Users Route
+    Route::resource('/users', 'UserController');
+    // @End Users Route
     
 });
  

@@ -20,6 +20,7 @@
     </li>
     <li><a class="nav-link" href="{{ route('category.index') }}"><i class="fas fa-list-ul"></i> <span>Categories</span></a></li>
     <li><a class="nav-link" href="{{ route('tags.index') }}"><i class="fas fa-tags"></i> <span>Tags</span></a></li>
+    <li><a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-user"></i> <span>Users</span></a></li>
 
     </aside>
 </div>

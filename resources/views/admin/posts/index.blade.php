@@ -30,11 +30,9 @@
                 <td>{{ $hasil->judul }}</td>
                 <td>{{ $hasil->category->name }}</td>
                 <td>
-                    <ul style="list-style:none;">
-                        @foreach($hasil->tags  as $tag)
-                        <li><h6><span class="badge badge-info badge-sm">{{ $tag->name }}</span></h6></li>
-                        @endforeach
-                    </ul>
+                    @foreach($hasil->tags  as $tag)
+                    <h6><span class="badge badge-info badge-sm">{{ $tag->name }}</span></h6>
+                    @endforeach
                 </td>
                 <td><span class="btn btn-warning btn-sm">{{ $hasil->user->name }}</span></td>
                 <td><img src="{{ asset($hasil->gambar) }}" class="img-fluid" style="width:100px;"></td>
