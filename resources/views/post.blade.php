@@ -3,17 +3,17 @@
 @section('banner')
         <!-- PAGE HEADER -->
         <div id="post-header" class="page-header">
-			<div class="page-header-bg" style="background-image: url('/frontend/img/header-1.jpg');" data-stellar-background-ratio="0.5"></div>
+			<div class="page-header-bg" style="background-image: url('{{ asset($article->gambar) }}');" data-stellar-background-ratio="0.5"></div>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10">
 						<div class="post-category">
-							<a href="category.html">Lifestyle</a>
+							<a href="#">{{ $article->category->name }}</a>
 						</div>
-						<h1>Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</h1>
+						<h1>{{$article->judul  }}</h1>
 						<ul class="post-meta">
-							<li><a href="author.html">John Doe</a></li>
-							<li>20 April 2018</li>
+							<li><a href="author.html">{{ $article->user->name }}</a></li>
+							<li>{{ $article->created_at->format('d F Y') }}</li>
 							<li><i class="fa fa-comments"></i> 3</li>
 							<li><i class="fa fa-eye"></i> 807</li>
 						</ul>
@@ -39,7 +39,7 @@
 
         <!-- post content -->
         <div class="section-row">
-            <h3>Ea vix periculis sententiae, ea blandit pericula abhorreant pri.</h3>
+            <h3>{{ $article->judul }}</h3>
             <p>Lorem ipsum dolor sit amet, mea ad idque detraxit, cu soleat graecis invenire eam. Vidisse suscipit liberavisse has ex, vocibus patrioque vim et, sed ex tation reprehendunt. Mollis volumus no vix, ut qui clita habemus, ipsum senserit est et. Ut has soluta epicurei mediocrem, nibh nostrum his cu, sea clita electram reformidans an.</p>
             <p>Est in saepe accusam luptatum. Purto deleniti philosophia eum ea, impetus copiosae id mel. Vis at ignota delenit democritum, te summo tamquam delicata pro. Utinam concludaturque et vim, mei ullum intellegam ei. Eam te illum nostrud, suas sonet corrumpit ea per. Ut sea regione posidonium. Pertinax gubergren ne qui, eos an harum mundi quaestio.</p>
             <figure class="pull-right">
@@ -67,10 +67,9 @@
             <div class="post-tags">
                 <ul>
                     <li>TAGS:</li>
-                    <li><a href="#">Social</a></li>
-                    <li><a href="#">Lifestyle</a></li>
-                    <li><a href="#">Fashion</a></li>
-                    <li><a href="#">Health</a></li>
+                    @foreach($article->tags as $tag)
+                    <li><a href="#">{{ $tag->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>

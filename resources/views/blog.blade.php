@@ -69,81 +69,27 @@
                         <h2 class="title">Recent posts</h2>
                     </div>
                 </div>
+
+                @foreach($top4_posts as $post)
                 <!-- post -->
                 <div class="col-md-6">
                     <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-1.jpg" alt=""></a>
+                        <a class="post-img" href="{{ route('blog.post', $post->slug) }}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}" style="height:200px"></a>
                         <div class="post-body">
                             <div class="post-category">
-                                <a href="category.html">Travel</a>
+                                <a href="#">{{ $post->category->name }}</a>
                             </div>
-                            <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
+                            <h3 class="post-title"><a href="#">{{ $post->judul }}</a></h3>
                             <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
+                                <li><a href="author.html">{{ $post->user->name }}</a></li>
+                                <li>{{ $post->created_at->diffForHumans() }}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <!-- /post -->
+                @endforeach
 
-                <!-- post -->
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Technology</a>
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ne bonorum praesent cum, labitur persequeris definitionem quo cu?</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /post -->
-
-                <div class="clearfix visible-md visible-lg"></div>
-
-                <!-- post -->
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-4.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Health</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /post -->
-
-                <!-- post -->
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-7.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Health</a>
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /post -->
             </div>
             <!-- /row -->
 
@@ -155,94 +101,26 @@
                     </div>
                 </div>
                 <div class="col-md-8">
+
+                    @foreach($all_posts as $post)
                     <!-- post -->
                     <div class="post post-row">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-13.jpg" alt=""></a>
+                        <a class="post-img" href="{{$post->slug}}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}"></a>
                         <div class="post-body">
                             <div class="post-category">
-                                <a href="category.html">Travel</a>
-                                <a href="category.html">Lifestyle</a>
+                                <a href="{{ $post->category->slug }}">{{ $post->category->name }}</a>
                             </div>
-                            <h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
+                            <h3 class="post-title"><a href="{{$post->slug}}">{{ $post->judul }}</a></h3>
                             <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
+                                <li><a href="#">{{ $post->user->name }}</a></li>
+                                <li>{{ $post->created_at->diffForHumans() }}</li>
                             </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+                            <p>{{ $post->content }}</p>
                         </div>
                     </div>
                     <!-- /post -->
-
-                    <!-- post -->
-                    <div class="post post-row">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-1.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Travel</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
-                    <!-- post -->
-                    <div class="post post-row">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-5.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
-                    <!-- post -->
-                    <div class="post post-row">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Fashion</a>
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
-                    <!-- post -->
-                    <div class="post post-row">
-                        <a class="post-img" href="blog-post.html"><img src="/frontend/img/post-7.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Health</a>
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ne bonorum praesent cum, labitur persequeris definitionem quo cu?</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">John Doe</a></li>
-                                <li>20 April 2018</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
+                    @endforeach
+                    
                     <div class="section-row loadmore text-center">
                         <a href="#" class="primary-button">Load More</a>
                     </div>

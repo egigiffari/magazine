@@ -18,9 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'BlogController@index');
-Route::get('/post', function(){
-    return view('template_frontend.post');
-});
+Route::get('/article/{slug}', 'BlogController@post')->name('blog.post');
 
 
 Route::group(['middleware' => 'auth'], function(){

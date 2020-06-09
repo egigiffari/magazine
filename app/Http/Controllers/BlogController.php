@@ -13,4 +13,10 @@ class BlogController extends Controller
         $all_posts = $post->orderBy('created_at', 'desc')->get();
         return view('blog', compact('top4_posts', 'all_posts'));
     }
+
+    public function post($slug)
+    {
+        $article = post::where('slug', $slug)->get()->first();
+        return view('post', compact('article'));
+    }
 }
