@@ -74,7 +74,7 @@
                 <!-- post -->
                 <div class="col-md-6">
                     <div class="post">
-                        <a class="post-img" href="{{ route('blog.post', $post->slug) }}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}" style="height:200px"></a>
+                        <a class="post-img" href="{{ route('blog.home', $post->slug) }}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}" style=""></a>
                         <div class="post-body">
                             <div class="post-category">
                                 <a href="#">{{ $post->category->name }}</a>
@@ -100,7 +100,7 @@
                         <h2 class="title">All posts</h2>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div id="all-post" class="col-md-8">
 
                     @foreach($all_posts as $post)
                     <!-- post -->
@@ -119,11 +119,9 @@
                         </div>
                     </div>
                     <!-- /post -->
-                    @endforeach
                     
-                    <div class="section-row loadmore text-center">
-                        <a href="#" class="primary-button">Load More</a>
-                    </div>
+                    @endforeach
+                    {{ $all_posts->links() }}
                 </div>
             </div>
             <!-- /row -->
