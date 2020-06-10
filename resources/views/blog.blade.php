@@ -4,57 +4,46 @@
         <div class="container">
 			<!-- row -->
 			<div id="hot-post" class="row hot-post">
+            @foreach($top_banner as $post => $result)
+                @if($loop->first)
 				<div class="col-md-8 hot-post-left">
 					<!-- post -->
 					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img src="/frontend/img/hot-post-1.jpg" alt=""></a>
+						<a class="post-img" href="{{ route('blog.home', $result->slug) }}"><img src="{{ $result->gambar }}" alt=""></a>
 						<div class="post-body">
 							<div class="post-category">
-								<a href="category.html">Lifestyle</a>
+								<a href="{{route('blog.categories', $result->category->slug)}}">{{ $result->category->name }}</a>
 							</div>
-							<h3 class="post-title title-lg"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
+							<h3 class="post-title title-lg"><a href="{{ route('blog.home', $result->slug) }}">{{ $result->judul }}</a></h3>
 							<ul class="post-meta">
-								<li><a href="author.html">John Doe</a></li>
-								<li>20 April 2018</li>
+								<li><a href="#">{{$result->user->name}}</a></li>
+								<li>{{$result->created_at->format('g F Y')}}</li>
 							</ul>
 						</div>
 					</div>
 					<!-- /post -->
 				</div>
+                @endif
+                @if($post > 0)
 				<div class="col-md-4 hot-post-right">
 					<!-- post -->
 					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img src="/frontend/img/hot-post-2.jpg" alt=""></a>
+						<a class="post-img" href="{{ route('blog.home', $result->slug) }}"><img src="{{ $result->gambar }}" alt=""></a>
 						<div class="post-body">
 							<div class="post-category">
-								<a href="category.html">Lifestyle</a>
+								<a href="{{route('blog.categories', $result->category->slug)}}">{{ $result->category->name }}</a>
 							</div>
-							<h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
+							<h3 class="post-title"><a href="{{ route('blog.home', $result->slug) }}">{{ $result->judul }}</a></h3>
 							<ul class="post-meta">
-								<li><a href="author.html">John Doe</a></li>
-								<li>20 April 2018</li>
+								<li><a href="#">{{$result->user->name}}</a></li>
+								<li>{{$result->created_at->format('g F Y')}}</li>
 							</ul>
 						</div>
 					</div>
-					<!-- /post -->
-
-					<!-- post -->
-					<div class="post post-thumb">
-						<a class="post-img" href="blog-post.html"><img src="/frontend/img/hot-post-3.jpg" alt=""></a>
-						<div class="post-body">
-							<div class="post-category">
-								<a href="category.html">Fashion</a>
-								<a href="category.html">Lifestyle</a>
-							</div>
-							<h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
-							<ul class="post-meta">
-								<li><a href="author.html">John Doe</a></li>
-								<li>20 April 2018</li>
-							</ul>
-						</div>
-					</div>
-					<!-- /post -->
+                    <!-- /post -->
 				</div>
+                @endif
+            @endforeach
 			</div>
 			<!-- /row -->
 		</div>
@@ -77,11 +66,11 @@
                         <a class="post-img" href="{{ route('blog.home', $post->slug) }}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}" style=""></a>
                         <div class="post-body">
                             <div class="post-category">
-                                <a href="#">{{ $post->category->name }}</a>
+                                <a href="{{route('blog.categories',$post->category->slug)}}">{{ $post->category->name }}</a>
                             </div>
-                            <h3 class="post-title"><a href="#">{{ $post->judul }}</a></h3>
+                            <h3 class="post-title"><a href="{{ route('blog.home', $post->slug) }}">{{ $post->judul }}</a></h3>
                             <ul class="post-meta">
-                                <li><a href="author.html">{{ $post->user->name }}</a></li>
+                                <li><a href="#">{{ $post->user->name }}</a></li>
                                 <li>{{ $post->created_at->diffForHumans() }}</li>
                             </ul>
                         </div>
@@ -105,10 +94,10 @@
                     @foreach($all_posts as $post)
                     <!-- post -->
                     <div class="post post-row">
-                        <a class="post-img" href="{{$post->slug}}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}"></a>
+                        <a class="post-img" href="{{route('blog.home', $post->slug)}}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}"></a>
                         <div class="post-body">
                             <div class="post-category">
-                                <a href="{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                                <a href="{{ route('blog.categories',$post->category->slug) }}">{{ $post->category->name }}</a>
                             </div>
                             <h3 class="post-title"><a href="{{$post->slug}}">{{ $post->judul }}</a></h3>
                             <ul class="post-meta">

@@ -15,12 +15,12 @@
                     @foreach($all_posts as $post)
                     <!-- post -->
                     <div class="post post-row">
-                        <a class="post-img" href="{{$post->slug}}"><img src="{{ $post->gambar }}" alt="{{ $post->slug }}"></a>
+                        <a class="post-img" href="{{route('blog.home',$post->slug)}}"><img src="/{{ $post->gambar }}" alt="{{ $post->slug }}"></a>
                         <div class="post-body">
                             <div class="post-category">
-                                <a href="{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                                <a href="{{ route('blog.categories',$post->category->slug) }}">{{ $post->category->name }}</a>
                             </div>
-                            <h3 class="post-title"><a href="{{$post->slug}}">{{ $post->judul }}</a></h3>
+                            <h3 class="post-title"><a href="{{route('blog.home',$post->slug)}}">{{ $post->judul }}</a></h3>
                             <ul class="post-meta">
                                 <li><a href="#">{{ $post->user->name }}</a></li>
                                 <li>{{ $post->created_at->diffForHumans() }}</li>

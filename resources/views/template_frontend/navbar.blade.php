@@ -3,15 +3,7 @@
 		<div id="nav">
 			<!-- Top Nav -->
 			<div id="nav-top">
-				<div class="container">
-					<!-- social -->
-					<ul class="nav-social">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-					</ul>
-					<!-- /social -->
+				<div class="container">	
 
 					<!-- logo -->
 					<div class="nav-logo">
@@ -24,7 +16,7 @@
 						<button class="aside-btn"><i class="fa fa-bars"></i></button>
 						<button class="search-btn"><i class="fa fa-search"></i></button>
 						<div id="nav-search">
-							<form>
+							<form action="{{ route('blog.search') }}" method="get">
 								<input class="input" name="search" placeholder="Enter your search...">
 							</form>
 							<button class="nav-close search-close">
@@ -42,12 +34,12 @@
 				<div class="container">
 					<!-- nav -->
 					<ul class="nav-menu">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="#">Lifestyle</a></li>
-						<li><a href="#">Fashion</a></li>
-						<li><a href="#">Technology</a></li>
-						<li><a href="#">Health</a></li>
-						<li><a href="#">Travel</a></li>
+						<li><a href="/">Home</a></li>
+						@foreach($categories as $category)
+							@if($category->posts->count() > 0)
+							<li><a href="{{ route('blog.categories', $category->slug) }}">{{$category->name}}</a></li>
+							@endif
+						@endforeach
 					</ul>
 					<!-- /nav -->
 				</div>
@@ -57,14 +49,14 @@
 			<!-- Aside Nav -->
 			<div id="nav-aside">
 				<ul class="nav-aside-menu">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li class="has-dropdown"><a>Categories</a>
 						<ul class="dropdown">
-							<li><a href="#">Lifestyle</a></li>
-							<li><a href="#">Fashion</a></li>
-							<li><a href="#">Technology</a></li>
-							<li><a href="#">Travel</a></li>
-							<li><a href="#">Health</a></li>
+						@foreach($categories as $category)
+							@if($category->posts->count() > 0)
+							<li><a href="{{ route('blog.categories', $category->slug) }}">{{$category->name}}</a></li>
+							@endif
+						@endforeach
 						</ul>
 					</li>
 					<li><a href="about.html">About Us</a></li>

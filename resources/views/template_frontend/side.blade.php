@@ -1,32 +1,3 @@
-<!-- social widget -->
-<div class="aside-widget">
-	<div class="section-title">
-		<h2 class="title">Social Media</h2>
-	</div>
-	<div class="social-widget">
-		<ul>
-			<li>
-				<a href="#" class="social-facebook">
-					<i class="fa fa-facebook"></i>
-					<span>21.2K<br>Followers</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="social-twitter">
-					<i class="fa fa-twitter"></i>
-					<span>10.2K<br>Followers</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="social-google-plus">
-					<i class="fa fa-google-plus"></i>
-					<span>5K<br>Followers</span>
-				</a>
-			</li>
-		</ul>
-	</div>
-</div>
-<!-- /social widget -->
 
 <!-- category widget -->
 <div class="aside-widget">
@@ -35,11 +6,11 @@
 	</div>
 	<div class="category-widget">
 		<ul>
-			<li><a href="#">Lifestyle <span>451</span></a></li>
-			<li><a href="#">Fashion <span>230</span></a></li>
-			<li><a href="#">Technology <span>40</span></a></li>
-			<li><a href="#">Travel <span>38</span></a></li>
-			<li><a href="#">Health <span>24</span></a></li>
+			@foreach($categories as $category)
+				@if($category->posts->count() > 0)
+				<li><a href="{{ route('blog.categories', $category->slug) }}">{{$category->name}} <span>{{$category->posts->count()}}</span></a></li>
+				@endif
+			@endforeach
 		</ul>
 	</div>
 </div>
@@ -50,54 +21,19 @@
 	<div class="section-title">
 		<h2 class="title">Popular Posts</h2>
 	</div>
-	<!-- post -->
-	<div class="post post-widget">
-		<a class="post-img" href="blog-post.html"><img src="/frontend/img/widget-3.jpg" alt=""></a>
-		<div class="post-body">
-			<div class="post-category">
-				<a href="category.html">Lifestyle</a>
-			</div>
-			<h3 class="post-title"><a href="blog-post.html">Ne bonorum praesent cum, labitur persequeris definitionem quo cu?</a></h3>
-		</div>
-	</div>
-	<!-- /post -->
 
+	@foreach($populer as $post)
 	<!-- post -->
 	<div class="post post-widget">
-		<a class="post-img" href="blog-post.html"><img src="/frontend/img/widget-2.jpg" alt=""></a>
+		<a class="post-img" href="{{route('blog.home', $post->slug)}}"><img src="/{{$post->gambar}}" alt=""></a>
 		<div class="post-body">
 			<div class="post-category">
-				<a href="category.html">Technology</a>
-				<a href="category.html">Lifestyle</a>
+				<a href="{{ route('blog.categories', $post->category->slug) }}">{{$post->category->name}}</a>
 			</div>
-			<h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
+			<h3 class="post-title"><a href="{{route('blog.home', $post->slug)}}">{{ $post->judul }}</a></h3>
 		</div>
 	</div>
-	<!-- /post -->
-
-	<!-- post -->
-	<div class="post post-widget">
-		<a class="post-img" href="blog-post.html"><img src="/frontend/img/widget-4.jpg" alt=""></a>
-		<div class="post-body">
-			<div class="post-category">
-				<a href="category.html">Health</a>
-			</div>
-			<h3 class="post-title"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
-		</div>
-	</div>
-	<!-- /post -->
-
-	<!-- post -->
-	<div class="post post-widget">
-		<a class="post-img" href="blog-post.html"><img src="/frontend/img/widget-5.jpg" alt=""></a>
-		<div class="post-body">
-			<div class="post-category">
-				<a href="category.html">Health</a>
-				<a href="category.html">Lifestyle</a>
-			</div>
-			<h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-		</div>
-	</div>
+	@endforeach
 	<!-- /post -->
 </div>
 <!-- /post widget -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\About;
 use App\Category;
 use App\post;
 use App\tag;
@@ -117,13 +118,14 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'content' => $request->content
             // 'gambar' => 'public/uploads/posts/' . $new_gambar
-        ];
-
+        ];        
+        
         if ($request->has('image')) {
             $gambar = $request->image;
             $new_gambar = time().$gambar->getClientOriginalName();
-            $gambar->move('public/uploads/posts/', $new_gambar);
+            $gambar->move('public/uploads/logo/', $new_gambar);
             $post_data['gambar'] = 'public/uploads/posts/' . $new_gambar;
+
         }
 
         // dd($post_data);
