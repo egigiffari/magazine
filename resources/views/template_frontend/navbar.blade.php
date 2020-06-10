@@ -35,11 +35,22 @@
 					<!-- nav -->
 					<ul class="nav-menu">
 						<li><a href="/">Home</a></li>
-						@foreach($categories as $category)
-							@if($category->posts->count() > 0)
-							<li><a href="{{ route('blog.categories', $category->slug) }}">{{$category->name}}</a></li>
-							@endif
-						@endforeach
+						<li class="has-dropdown">
+							<a href="#">Categories</a>
+							<div class="dropdown">
+								<div class="dropdown-body">
+									<ul class="dropdown-list">
+										@foreach($categories as $category)
+											@if($category->posts->count() > 0)
+											<li><a href="{{ route('blog.categories', $category->slug) }}">{{$category->name}}</a></li>
+											@endif
+										@endforeach
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li><a href="{{route('blog.articles')}}">All Post</a></li>
+						<li><a href="{{route('blog.about')}}">About Us</a></li>
 					</ul>
 					<!-- /nav -->
 				</div>
@@ -59,8 +70,7 @@
 						@endforeach
 						</ul>
 					</li>
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="contact.html">Contacts</a></li>
+					<li><a href="{{route('blog.about')}}">About Us</a></li>
 				</ul>
 				<button class="nav-close nav-aside-close"><span></span></button>
 			</div>

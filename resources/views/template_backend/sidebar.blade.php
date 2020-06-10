@@ -5,7 +5,7 @@
     <a href="/home">Blog Project</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-    <a href="/home">St</a>
+    <a href="/home">BP</a>
     </div>
     <ul class="sidebar-menu">
     <li class="menu-header">Dashboard</li>
@@ -20,7 +20,9 @@
     </li>
     <li class="{{ (Request::segment(1) == 'category' ? ' active' : '') }}"><a class="nav-link" href="{{ route('category.index') }}"><i class="fas fa-list-ul"></i> <span>Categories</span></a></li>
     <li class="{{ (Request::segment(1) == 'tags' ? ' active' : '') }}"><a class="nav-link" href="{{ route('tags.index') }}"><i class="fas fa-tags"></i> <span>Tags</span></a></li>
+    @if(Auth::user()->type == 1)
     <li class="{{ (Request::segment(1) == 'users' ? ' active' : '') }}"><a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-user"></i> <span>Users</span></a></li>
+    @endif
     <li class="{{ (Request::segment(1) == 'about' ? ' active' : '') }}"><a class="nav-link" href="{{ route('about.index') }}"><i class="fas fa-book"></i> <span>About</span></a></li>
 
     </aside>

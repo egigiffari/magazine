@@ -19,7 +19,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = post::paginate(10);
+        if (Auth::user()->type) {
+            $posts = post::latest()->paginate(10);
+        }else{
+            $posts = post::where('user_id', Auth::id())->latest()->paginate(10);
+        }
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -59,7 +63,8 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'content' => $request->content,
             'gambar' => 'public/uploads/posts/' . $new_gambar,
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'views_post' => 0
         ]);
 
         $posts->tags()->attach($request->tags);

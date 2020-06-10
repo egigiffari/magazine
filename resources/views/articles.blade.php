@@ -25,7 +25,7 @@
                                 <li><a href="#">{{ $post->user->name }}</a></li>
                                 <li>{{ $post->created_at->diffForHumans() }}</li>
                             </ul>
-                            <p>{{ $post->content }}</p>
+                            <p>{!! Str::limit($post->content, 100) !!}</p>
                         </div>
                     </div>
                     <!-- /post -->

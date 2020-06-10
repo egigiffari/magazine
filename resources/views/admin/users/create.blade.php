@@ -41,7 +41,7 @@
             <input type="password" name="password" id="password" class="form-control">
         </div>
         <div class="form-group">
-            <button class="btn btn-primary">Save Category</button>
+            <button class="btn btn-primary">Save Users</button>
         </div>
     </form>
 

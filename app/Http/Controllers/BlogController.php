@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\About;
 use App\Category;
 use App\post;
 use App\tag;
@@ -110,5 +111,20 @@ class BlogController extends Controller
 
         $all_posts = post::where('judul', $request->search)->orWhere('judul', "like", "%" . $request->search . "%")->paginate(10);
         return view('articles', compact('all_posts','populer', 'categories', 'tags'));
+    }
+
+    public function about_us()
+    {
+       // Populer Post
+       $populer = post::orderBy('views_post', 'desc')->limit(5)->get();
+
+       // load all category
+       $categories = Category::all();
+
+       // load all tags
+       $tags = tag::all();
+
+       $about = About::whereId(1)->firstOrFail();
+       return view('about', compact('about','populer', 'categories', 'tags'));
     }
 }

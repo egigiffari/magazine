@@ -49,13 +49,6 @@
 						<div class="section-title">
 							<h3 class="title">Written By <a href="#">{{$article->user->name}}</a></h3>
 						</div>
-						<div class="author media">
-							<div class="media-left">
-								<a href="author.html">
-									<img class="author-img media-object" src="/frontend/img/avatar-1.jpg" alt="">
-								</a>
-							</div>
-						</div>
 					</div>
 					<!-- /post author -->
 				</div>

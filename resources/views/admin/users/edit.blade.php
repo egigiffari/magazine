@@ -42,7 +42,7 @@
             <input type="password" name="password" id="password" class="form-control">
         </div>
         <div class="form-group">
-            <button class="btn btn-primary">Update Category</button>
+            <button class="btn btn-primary">Update Users</button>
         </div> 
     </form>
 
